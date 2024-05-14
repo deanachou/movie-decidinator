@@ -18,11 +18,10 @@ const netflixController = require("./netflix/netflixController");
 
 //ENDPOINTS
 app.get("/test", (req, res) => {
-  res.status(200).send("server running, test recieved!")
+  res.status(200).send("server running, test recieved!");
 });
 
 app.get("/genres", netflixController.getGenres);
-
-
+app.get("/result", netflixController.getResult);
 
 module.exports = app;
