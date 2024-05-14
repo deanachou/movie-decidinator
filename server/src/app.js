@@ -14,11 +14,15 @@ app.use(
 app.use(express.json());
 
 //MVC CONTROLERS
+const netflixController = require("./netflix/netflixController");
 
 //ENDPOINTS
-
 app.get("/test", (req, res) => {
   res.status(200).send("server running, test recieved!")
 });
+
+app.get("/genres", netflixController.getGenres);
+
+
 
 module.exports = app;
