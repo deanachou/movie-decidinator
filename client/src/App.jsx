@@ -1,13 +1,10 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-  return (
-    <>
-      Hello world
-    </>
-  )
+  return <>Hello world</>;
 }
 
-export default App
+export default App;
