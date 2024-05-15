@@ -8,7 +8,7 @@ const app = express();
 //MIDLEWARE
 app.use(
   cors({
-    origin: process.env.FE_PATH, //add to RENDER as ENV  VARIABLE
+    origin: process.env.FE_PATH, //add to RENDER as ENV VARIABLE
     credentials: true,
   })
 );
@@ -20,23 +20,7 @@ const dbController = require("./database/dbController");
 
 //ENDPOINTS
 app.get("/test", async (req, res) => {
-  // res.status(200).send("server running, test recieved!");
-
-  const latestEntryId = await knex("history").max("id");
-  const latestEntry = await knex
-    .select("*")
-    .where("id", latestEntryId[0].max)
-    .from("history");
-
-  const genre = latestEntry[0].genre;
-  const subGenre = latestEntry[0].sub_genre;
-
-  const genreIdArr = await knex
-    .select("related_ids")
-    .where("genre", "Drama")
-    .from("quiz_genre_id");
-
-  res.status(200).send(genreIdArr);
+  res.status(200).send("server running, test recieved!");
 });
 
 app.get("/genres", netflixController.getGenres);

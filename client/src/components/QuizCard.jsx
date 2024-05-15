@@ -65,6 +65,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
     const newResponse = await fetch(`${BASE_URL}/result`, {
       method: "POST",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
