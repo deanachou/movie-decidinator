@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./QuizCard.css";
+import ResultPage from "./ResultPage";
 
 const QuizCard = ({ questionCount, setQuestionCount }) => {
   const quizOptions = {
@@ -36,6 +37,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
   const [optionCount, setOptionCount] = useState(0);
   const [endOfQuiz, setEndOfQuiz] = useState(false);
   const [responses, setResponses] = useState([]);
+
   //use Effects
   useEffect(() => {
     console.log("responses", responses);
@@ -51,12 +53,11 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
       return previous + 1;
     });
   };
- 
 
   return (
     <>
       {endOfQuiz ? (
-        <h3>end of quiz!</h3>
+        <ResultPage></ResultPage>
       ) : (
         quizOptions[quizOptionsKeys[optionCount]].map((option, index) => (
           <input
