@@ -18,7 +18,7 @@ const QuizPage = () => {
   //use effects
 
   return (
-    <section>
+    <main>
       <h2 className="question">{quizQuestions[questionCount]}</h2>
       <div className="cardContainer">
         <QuizCard
@@ -26,7 +26,7 @@ const QuizPage = () => {
           setQuestionCount={setQuestionCount}
         ></QuizCard>
       </div>
-    </section>
+    </main>
   );
 };
 
