@@ -7,17 +7,7 @@ module.exports = {
   },
 
   async getResult(req, res) {
-    const { country, type, audio, subtitle, genre, sub_genre, decade } =
-      req.body;
-    const quizResult = await netflixModel.getResult(
-      country,
-      type,
-      audio,
-      subtitle,
-      genre,
-      sub_genre,
-      decade
-    );
+    const quizResult = await netflixModel.getResult();
     res.status(200).send(quizResult);
   },
 };

@@ -24,6 +24,7 @@ module.exports = {
         //searched_by: username
       })
       .into("history");
+      
   },
 
   getHistory() {

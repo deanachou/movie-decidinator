@@ -10,7 +10,7 @@ const QuizPage = () => {
     "What language subtitles do you need?",
     "Pick a genre!",
     "Choose another sub-genre!",
-    "When should it be from?",
+  //  "When should it be from?",
   ];
   //use states
   const [questionCount, setQuestionCount] = useState(0);

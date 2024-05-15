@@ -7,9 +7,9 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const QuizCard = ({ questionCount, setQuestionCount }) => {
   const quizOptions = {
     country: ["Japan", "USA"],
-    type: ["Movie", "Series"],
-    audio: ["Japanese", "English", "Chinese", "Spanish", "Korean"],
-    subtitle: ["Japanese", "English", "Chinese", "Spanish"],
+    type: ["movie", "series"],
+    audio: ["japanese", "english", "chinese", "spanish", "korean"],
+    subtitle: ["japanese", "english", "chinese", "spanish"],
     genre: [
       "Horror",
       "Comedy",
@@ -30,7 +30,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
       "Sports",
       "Crime/Thriller",
     ],
-    decade: ["60s", "70s", "80s", "90s", "2000s", "2010s", "2020s", "ALL!"],
+    // decade: ["60s", "70s", "80s", "90s", "2000s", "2010s", "2020s", "ALL!"],
   };
 
   const quizOptionsKeys = Object.keys(quizOptions);
@@ -52,9 +52,9 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
   }, []);
 
   //handler Functions
-  const handleClick = () => {
+  const handleOptionClick = () => {
     setOptionCount((previous) => {
-      if (previous + 1 === 7) {
+      if (previous + 1 === 6) {
         setEndOfQuiz(true);
       }
       return previous + 1;
@@ -77,7 +77,6 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
         decade: responses[6],
       }),
     });
-   
   };
 
   const handleGetResponseHistory = async () => {
@@ -88,10 +87,10 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
       },
     });
     let historyData = await fetchedData.json();
-    const sortedDataDesc = historyData.sort((a, b) => {
-      return b.date_searched - a.date_searched;
-    });
-    setHistory([...sortedDataDesc]);
+    // const sortedDataDesc = historyData.sort((a, b) => {
+    //   return b.date_searched - a.date_searched;
+    // });
+    setHistory([...historyData]);
   };
 
   return (
@@ -110,7 +109,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
             value={option}
             key={index}
             onClick={(e) => {
-              handleClick();
+              handleOptionClick();
               setResponses((previous) => {
                 return [...previous, e.target.value];
               });

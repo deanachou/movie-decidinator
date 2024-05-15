@@ -1,3 +1,4 @@
+const { get } = require("../app");
 const knex = require("../knex");
 const netflixApiKey = process.env.NETFLIX_APIKEY;
 const netflixApiHost = process.env.NETFLIX_APIHOST;
@@ -22,22 +23,48 @@ module.exports = {
     }
   },
 
-  getGenreId(searchGenre) {
-    return knex.select("related_ids").where("genre", searchGenre).from("quiz_genre_id");
-  },
-
   async getResult() {
+    const latestEntryId = await knex("history").max("id");
+    const latestEntry = await knex
+      .select("*")
+      .where("id", latestEntryId[0].max)
+      .from("history");
+
+    const country = latestEntry[0].country;
+    const genre = latestEntry[0].genre;
+    const subGenre = latestEntry[0].sub_genre;
+
+    // console.log("genres", genre, subGenre);
+    // console.log("latest entry", latestEntry);
+
+    const countryId = await knex
+      .select("country_id")
+      .where("country", country)
+      .from("country_id");
+
+    const genreIdArr = await knex
+      .select("related_ids")
+      .where("genre", genre)
+      .from("quiz_genre_id");
+
+    const subGenreIdArr = await knex
+      .select("related_ids")
+      .where("genre", subGenre)
+      .from("quiz_genre_id");
+    const genrelistArr = genreIdArr.concat(subGenreIdArr);
+    const genrelistStr = genrelistArr[0].related_ids.join("%2C");
+
     let quizParams = {
-      country,
-      type,
-      audio,
-      subtitle,
-      genre,
-      sub_genre,
-      decade,
-      //genrelist, start_year, end_year
+      country: countryId[0].country_id,
+      type: latestEntry[0].type,
+      audio: latestEntry[0].audio,
+      subtitle: latestEntry[0].subtitle,
+      genrelist: genrelistStr,
     };
-    const url = `https://unogsng.p.rapidapi.com/search?countrylist=${quizParams.country}&type=${quizParams.type}&audio=${quizParams.audio}&subtitle=${quizParams.subtitle}&genrelist=${quizParams.genrelist}&start_year=${quizParams.start_year}&end_year=${quizParams.end_year}&audiosubtitle_andor=and&orderby=rating&limit=3&offset=0`;
+
+    // console.log(quizParams);
+
+    const url = `https://unogsng.p.rapidapi.com/search?countrylist=${quizParams.country}&type=${quizParams.type}&audio=${quizParams.audio}&subtitle=${quizParams.subtitle}&genrelist=${quizParams.genrelist}&audiosubtitle_andor=and&orderby=rating&limit=3&offset=0`;
     const options = {
       method: "GET",
       headers: {
