@@ -1,0 +1,9 @@
+.question {
+  text-align: center;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: lavender;
+}
