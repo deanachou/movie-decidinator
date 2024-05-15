@@ -35,9 +35,10 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
   //use States
   const [optionCount, setOptionCount] = useState(0);
   const [endOfQuiz, setEndOfQuiz] = useState(false);
-
+  const [responses, setResponses] = useState([]);
   //use Effects
   useEffect(() => {
+    console.log("responses", responses);
     setQuestionCount(optionCount);
   }, [optionCount]);
 
@@ -50,6 +51,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
       return previous + 1;
     });
   };
+ 
 
   return (
     <>
@@ -57,9 +59,18 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
         <h3>end of quiz!</h3>
       ) : (
         quizOptions[quizOptionsKeys[optionCount]].map((option, index) => (
-          <div className="quizCard" key={index} onClick={handleClick}>
-            <p>{option}</p>
-          </div>
+          <input
+            className="quizCard"
+            type="button"
+            value={option}
+            key={index}
+            onClick={(e) => {
+              handleClick();
+              setResponses((previous) => {
+                return [...previous, e.target.value];
+              });
+            }}
+          ></input>
         ))
       )}
     </>
