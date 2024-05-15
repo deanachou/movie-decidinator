@@ -25,4 +25,8 @@ module.exports = {
       })
       .into("history");
   },
+
+  getHistory() {
+    return knex.select("*").from("history");
+  },
 };

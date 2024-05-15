@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./QuizCard.css";
 import ResultPage from "./ResultPage";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const QuizCard = ({ questionCount, setQuestionCount }) => {
   const quizOptions = {
     country: ["Japan", "USA"],

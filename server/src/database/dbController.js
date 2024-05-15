@@ -21,4 +21,9 @@ module.exports = {
     );
     res.status(200).send("Your response has been recorded");
   },
+
+  async getHistory(req, res) {
+    const historyArr = await dbModel.getHistory();
+    res.status(200).send(historyArr);
+  },
 };
