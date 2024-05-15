@@ -1,3 +1,5 @@
+import "./QuizCard.css";
+
 const QuizCard = () => {
   const options = {
     country: ["Japan", "USA"],
@@ -35,9 +37,17 @@ const QuizCard = () => {
       "ALL!",
     ],
   };
-
+  const countryMapping = options.country.map((option, index) => (
+    <p key={index}>{option}</p>
+  ));
   return (
-   
+    <>
+      {options.country.map((option, index) => (
+        <div className="quizCard" key={index}>
+          <p>{option}</p>
+        </div>
+      ))}
+    </>
   );
 };
 

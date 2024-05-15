@@ -6,8 +6,7 @@ const QuizPage = () => {
     <section>
       <h2 className="question">What country are you watching from?</h2>
       <div className="cardContainer">
-        <QuizCard>Japan</QuizCard>
-        <QuizCard>Japan</QuizCard>
+        <QuizCard></QuizCard>
       </div>
     </section>
   );
