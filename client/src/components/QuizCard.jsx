@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import "./QuizCard.css";
+import ResultPage from "./ResultPage";
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const QuizCard = ({ questionCount, setQuestionCount }) => {
   const quizOptions = {
@@ -36,11 +39,17 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
   const [optionCount, setOptionCount] = useState(0);
   const [endOfQuiz, setEndOfQuiz] = useState(false);
   const [responses, setResponses] = useState([]);
+  const [history, setHistory] = useState([]);
+
   //use Effects
   useEffect(() => {
     console.log("responses", responses);
     setQuestionCount(optionCount);
   }, [optionCount]);
+
+  useEffect(() => {
+    handleGetResponseHistory();
+  }, []);
 
   //handler Functions
   const handleClick = () => {
@@ -51,12 +60,48 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
       return previous + 1;
     });
   };
- 
+
+  const addResponseHistory = async () => {
+    const newResponse = await fetch(`${BASE_URL}/result`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        country: responses[0],
+        type: responses[1],
+        audio: responses[2],
+        subtitle: responses[3],
+        genre: responses[4],
+        sub_genre: responses[5],
+        decade: responses[6],
+      }),
+    });
+   
+  };
+
+  const handleGetResponseHistory = async () => {
+    let fetchedData = await fetch(`${BASE_URL}/history`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let historyData = await fetchedData.json();
+    const sortedDataDesc = historyData.sort((a, b) => {
+      return b.date_searched - a.date_searched;
+    });
+    setHistory([...sortedDataDesc]);
+  };
 
   return (
     <>
       {endOfQuiz ? (
-        <h3>end of quiz!</h3>
+        <ResultPage
+          responses={responses}
+          addResponseHistory={addResponseHistory}
+          endOfQuiz={endOfQuiz}
+        ></ResultPage>
       ) : (
         quizOptions[quizOptionsKeys[optionCount]].map((option, index) => (
           <input

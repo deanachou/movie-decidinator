@@ -18,7 +18,7 @@ const QuizPage = () => {
   //use effects
 
   return (
-    <main>
+    <main className="mainPage">
       <h2 className="question">{quizQuestions[questionCount]}</h2>
       <div className="cardContainer">
         <QuizCard
