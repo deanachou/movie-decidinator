@@ -13,25 +13,18 @@ const QuizPage = () => {
     "When should it be from?",
   ];
   //use states
-
   const [questionCount, setQuestionCount] = useState(0);
 
   //use effects
 
-  //handler functions
-
   return (
     <section>
-      {/* {questions.map((question, index) => (
-        <h2 className="question" key={index}>
-          {question}
-        </h2>
-      ))} */}
-
       <h2 className="question">{quizQuestions[questionCount]}</h2>
-
       <div className="cardContainer">
-        <QuizCard></QuizCard>
+        <QuizCard
+          questionCount={questionCount}
+          setQuestionCount={setQuestionCount}
+        ></QuizCard>
       </div>
     </section>
   );

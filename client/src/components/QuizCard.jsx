@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./QuizCard.css";
 
-const QuizCard = () => {
+const QuizCard = ({ questionCount, setQuestionCount }) => {
   const quizOptions = {
     country: ["Japan", "USA"],
     type: ["Movie", "Series"],
@@ -27,16 +27,7 @@ const QuizCard = () => {
       "Sports",
       "Crime/Thriller",
     ],
-    decade: [
-      "60s",
-      "70s",
-      "80s",
-      "90s",
-      "2000s",
-      "2010s",
-      "2020 ~ now",
-      "ALL!",
-    ],
+    decade: ["60s", "70s", "80s", "90s", "2000s", "2010s", "2020s", "ALL!"],
   };
 
   const quizOptionsKeys = Object.keys(quizOptions);
@@ -47,12 +38,11 @@ const QuizCard = () => {
 
   //use Effects
   useEffect(() => {
-    console.log("count", optionCount);
+    setQuestionCount(optionCount);
   }, [optionCount]);
 
   //handler Functions
   const handleClick = () => {
-    console.log("card clicked!");
     setOptionCount((previous) => {
       if (previous + 1 === 7) {
         setEndOfQuiz(true);
