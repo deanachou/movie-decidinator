@@ -24,7 +24,7 @@ const ResultPage = ({ responses, addResponseHistory, endOfQuiz }) => {
   //handler func
   const handleGetResult = async () => {
     const fetchedResult = await fetch(`${BASE_URL}/result`, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
