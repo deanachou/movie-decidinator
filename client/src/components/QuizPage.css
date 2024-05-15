@@ -1,0 +1,15 @@
+.mainPage {
+  height: 100vh;
+}
+
+.question {
+  text-align: center;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: lavender;
+  height: 80vh;
+}
