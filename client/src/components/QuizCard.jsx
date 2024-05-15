@@ -57,7 +57,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
   return (
     <>
       {endOfQuiz ? (
-        <ResultPage></ResultPage>
+        <ResultPage responses={responses}></ResultPage>
       ) : (
         quizOptions[quizOptionsKeys[optionCount]].map((option, index) => (
           <input
