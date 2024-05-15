@@ -77,6 +77,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
         decade: responses[6],
       }),
     });
+   
   };
 
   const handleGetResponseHistory = async () => {
@@ -99,6 +100,7 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
         <ResultPage
           responses={responses}
           addResponseHistory={addResponseHistory}
+          endOfQuiz={endOfQuiz}
         ></ResultPage>
       ) : (
         quizOptions[quizOptionsKeys[optionCount]].map((option, index) => (
