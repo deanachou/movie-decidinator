@@ -37,12 +37,17 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
   const [optionCount, setOptionCount] = useState(0);
   const [endOfQuiz, setEndOfQuiz] = useState(false);
   const [responses, setResponses] = useState([]);
+  const [history, setHistory] = useState([]);
 
   //use Effects
   useEffect(() => {
     console.log("responses", responses);
     setQuestionCount(optionCount);
   }, [optionCount]);
+
+  useEffect(() => {
+    handleGetResponseHistory();
+  }, []);
 
   //handler Functions
   const handleClick = () => {
@@ -54,10 +59,45 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
     });
   };
 
+  const addResponseHistory = async () => {
+    const newResponse = await fetch(`${BASE_URL}/result`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        country: responses[0],
+        type: responses[1],
+        audio: responses[2],
+        subtitle: responses[3],
+        genre: responses[4],
+        sub_genre: responses[5],
+        decade: responses[6],
+      }),
+    });
+  };
+
+  const handleGetResponseHistory = async () => {
+    let fetchedData = await fetch(`${BASE_URL}/history`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let historyData = await fetchedData.json();
+    const sortedDataDesc = historyData.sort((a, b) => {
+      return b.date_searched - a.date_searched;
+    });
+    setHistory([...sortedDataDesc]);
+  };
+
   return (
     <>
       {endOfQuiz ? (
-        <ResultPage responses={responses}></ResultPage>
+        <ResultPage
+          responses={responses}
+          addResponseHistory={addResponseHistory}
+        ></ResultPage>
       ) : (
         quizOptions[quizOptionsKeys[optionCount]].map((option, index) => (
           <input
