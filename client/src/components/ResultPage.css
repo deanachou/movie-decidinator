@@ -1,3 +1,11 @@
+.mainResultContainer {
+  text-align: center;
+  color: rgb(230, 230, 230);
+  min-height: 100vh;
+  max-height: fit-content;
+  background-color: rgb(50, 50, 50);
+}
+
 .resultButton {
   font-size: 60px;
 }
@@ -5,13 +13,22 @@
 .resultCardContainer {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .resultCard {
   background-color: rgb(149, 0, 0);
-  color: white;
+  color: rgb(230, 230, 230);
   text-align: center;
   width: 30%;
   border: 4px dashed black;
   margin-top: 48px;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 4px;
+}
+
+.resultImg {
+  max-width: 80%;
+  object-fit: contain;
 }
