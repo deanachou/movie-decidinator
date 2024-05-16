@@ -1,15 +1,25 @@
-.mainPage {
-  height: 100vh;
+.mainQuizPage {
+  min-height: 100vh;
+  max-height: fit-content;
+  background-color: rgb(50, 50, 50);
+  color: rgb(230, 230, 230);
 }
 
 .question {
   text-align: center;
+  position: relative;
+  top: 20px;
 }
 
 .cardContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background-color: lavender;
-  height: 80vh;
+  min-height: 100vh;
+  max-height: fit-content;
+}
+
+.quizCard {
+  margin-top: 100px;
+  background-color: red;
 }

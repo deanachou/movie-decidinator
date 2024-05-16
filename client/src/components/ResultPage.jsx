@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ResultPage.css";
+
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const ResultPage = ({ responses, addResponseHistory, endOfQuiz }) => {
@@ -37,12 +38,28 @@ const ResultPage = ({ responses, addResponseHistory, endOfQuiz }) => {
   };
 
   return (
-    <main>
-      <h1>end of quiz!</h1>
+    <main className="mainResultContainer">
+      <h1>End of quiz!</h1>
       <button className="resultButton" onClick={handleGetResult}>
-        Click here for results
+        Click for results!
       </button>
-      <p></p>
+      <div className="resultCardContainer">
+        {result ? (
+          result.map((item, index) => {
+            return (
+              <div className="resultCard" key={index}>
+                <img className="resultImg" src={item.img}></img>
+                <h3>{item.title}</h3>
+                <p>{item.synopsis}</p>
+              </div>
+            );
+          })
+        ) : (
+          <div className="resultCard">
+            <p>Oh no! There are no results for your search. Please try again</p>
+          </div>
+        )}
+      </div>
     </main>
   );
 };
