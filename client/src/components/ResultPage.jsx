@@ -41,18 +41,24 @@ const ResultPage = ({ responses, addResponseHistory, endOfQuiz }) => {
     <main className="mainResultContainer">
       <h1>End of quiz!</h1>
       <button className="resultButton" onClick={handleGetResult}>
-        Click here for results
+        Click for results!
       </button>
       <div className="resultCardContainer">
-        {result.map((item, index) => {
-          return (
-            <div className="resultCard" key={index}>
-              <img className="resultImg" src={item.img}></img>
-              <h3>{item.title}</h3>
-              <p>{item.synopsis}</p>
-            </div>
-          );
-        })}
+        {result ? (
+          result.map((item, index) => {
+            return (
+              <div className="resultCard" key={index}>
+                <img className="resultImg" src={item.img}></img>
+                <h3>{item.title}</h3>
+                <p>{item.synopsis}</p>
+              </div>
+            );
+          })
+        ) : (
+          <div className="resultCard">
+            <p>Oh no! There are no results for your search. Please try again</p>
+          </div>
+        )}
       </div>
     </main>
   );
