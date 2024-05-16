@@ -7,9 +7,7 @@ module.exports = {
   },
 
   async getResult(req, res) {
-    const quizResult = await netflixModel.getResult(
-  
-    );
+    const quizResult = await netflixModel.getResult();
     res.status(200).send(quizResult);
   },
 };

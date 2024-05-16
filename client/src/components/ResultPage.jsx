@@ -42,7 +42,17 @@ const ResultPage = ({ responses, addResponseHistory, endOfQuiz }) => {
       <button className="resultButton" onClick={handleGetResult}>
         Click here for results
       </button>
-      <p></p>
+      <div className="resultCardContainer">
+        {result.map((item, index) => {
+          return (
+            <div className="resultCard" key={index}>
+              <img src={item.img}></img>
+              <h3>{item.title}</h3>
+              <p>{item.synopsis}</p>
+            </div>
+          );
+        })}
+      </div>
     </main>
   );
 };
