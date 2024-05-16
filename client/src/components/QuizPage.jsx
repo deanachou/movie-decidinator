@@ -19,7 +19,7 @@ const QuizPage = () => {
 
   return (
     <main className="mainQuizPage">
-      <h2 className="question">{quizQuestions[questionCount]}</h2>
+      <h1 className="question">{quizQuestions[questionCount]}</h1>
       <div className="cardContainer">
         <QuizCard
           questionCount={questionCount}

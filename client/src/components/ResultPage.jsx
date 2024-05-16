@@ -17,7 +17,6 @@ const ResultPage = ({ responses, addResponseHistory, endOfQuiz }) => {
   }, [endOfQuiz]);
 
   useEffect(() => {
-    console.log("button clicked, handleGetResult done");
     console.log("click", resultClick);
     console.log("result", result);
   }, [resultClick]);

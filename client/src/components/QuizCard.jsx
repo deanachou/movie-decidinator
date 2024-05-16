@@ -65,7 +65,6 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
     const newResponse = await fetch(`${BASE_URL}/result`, {
       method: "POST",
       headers: {
-        
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -88,9 +87,6 @@ const QuizCard = ({ questionCount, setQuestionCount }) => {
       },
     });
     let historyData = await fetchedData.json();
-    // const sortedDataDesc = historyData.sort((a, b) => {
-    //   return b.date_searched - a.date_searched;
-    // });
     setHistory([...historyData]);
   };
 

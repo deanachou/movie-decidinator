@@ -34,9 +34,6 @@ module.exports = {
     const genre = latestEntry[0].genre;
     const subGenre = latestEntry[0].sub_genre;
 
-    // console.log("genres", genre, subGenre);
-    // console.log("latest entry", latestEntry);
-
     const countryId = await knex
       .select("country_id")
       .where("country", country)
@@ -61,8 +58,6 @@ module.exports = {
       subtitle: latestEntry[0].subtitle,
       genrelist: genrelistStr,
     };
-
-    // console.log(quizParams);
 
     const url = `https://unogsng.p.rapidapi.com/search?countrylist=${quizParams.country}&type=${quizParams.type}&audio=${quizParams.audio}&subtitle=${quizParams.subtitle}&genrelist=${quizParams.genrelist}&audiosubtitle_andor=and&orderby=rating&limit=3&offset=0`;
     const options = {
