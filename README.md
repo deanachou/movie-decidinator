@@ -1,6 +1,6 @@
 # movie-decidinator
 
-The Movie Decidinator helps eliminate decision paralysis or conflicts when choosing what to watch on Netflix. Currently tailored for users located in Japan and the USA, a short quiz will return 3 movie/show reccomendations (Poster, title, synopsis) for you to watch.
+The Movie Decidinator helps eliminate decision paralysis or conflicts when choosing what to watch on Netflix. Currently tailored for users located in Japan and the USA, a short quiz will return 3 movie/show recommendations (Poster, title, synopsis) for you to watch.
 
 
 ## Tech Stack
